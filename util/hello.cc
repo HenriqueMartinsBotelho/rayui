@@ -1,6 +1,6 @@
 #include <iostream>
 #include <node_api.h>
-// #include <raylib.h>  // Temporarily commented out
+#include <raylib.h>
 
 #define NAPI_CALL(env, call)                                      \
   do                                                              \
@@ -47,12 +47,29 @@ napi_value Hello(napi_env env, napi_callback_info info) {
 }
 
 napi_value InitRayUI(napi_env env, napi_callback_info info) {
-  // Raylib code temporarily disabled to test compilation
-  std::cout << "Raylib functionality temporarily disabled for testing" << std::endl;
+  // Initialize raylib window
+  const int screenWidth = 800;
+  const int screenHeight = 450;
   
-  // Return a small result string
+  InitWindow(screenWidth, screenHeight, "RayUI Test Window");
+  SetTargetFPS(60);
+  
+  // Main game loop
+  while (!WindowShouldClose()) {
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+    
+    DrawText("Hello from RayUI!", 190, 200, 20, LIGHTGRAY);
+    DrawText("Press ESC to close", 270, 250, 20, GRAY);
+    
+    EndDrawing();
+  }
+  
+  CloseWindow();
+  
+  // Return success message
   napi_value result;
-  NAPI_CALL(env, napi_create_string_utf8(env, "Raylib functionality disabled", NAPI_AUTO_LENGTH, &result));
+  NAPI_CALL(env, napi_create_string_utf8(env, "Raylib window closed successfully", NAPI_AUTO_LENGTH, &result));
   return result;
 }
 
