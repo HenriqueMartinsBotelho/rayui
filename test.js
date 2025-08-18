@@ -6,7 +6,7 @@ const rayui = require("./rayui");
 const input = 200000;
 
 let result;
-
+/*
 console.time("Native");
 result = findPrimeNative(input);
 console.timeEnd("Native");
@@ -25,7 +25,7 @@ try {
 } catch (err) {
   console.error("Error opening terminal:", err.message);
 }
-
+*/
 // Test the Raylib UI functionality
 console.log("\nTesting Raylib UI...");
 try {
